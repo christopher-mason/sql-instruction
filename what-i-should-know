@@ -1,0 +1,22 @@
+/* As of today, what shoudl you know in SQl
+*/
+
+-- 1) Select statement
+-- select * from movie; this gives you all the columns from a table, w/o filter you will get all rows
+
+-- select a single row by primary key
+-- select * from movie where id = 1;
+
+-- select multiple rows by something
+/* show all PG movies
+select * from movie
+ where rating = 'PG';
+ */
+
+-- there are lots of other keywords to pair with select (=, in, group by, having, functions, joins)
+
+-- 2) rest of the CRUD functions (insert, update, delete)
+
+-- 3) Joins - join by foreign key to primary key
+
+-- 4) DDL
