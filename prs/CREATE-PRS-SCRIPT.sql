@@ -70,6 +70,11 @@ Foreign Key (RequestID) references Request(ID),
 CONSTRAINT req_pdt unique (RequestID, ProductID)
 );
 
+-- Create prs_user
+DROP USER IF EXISTS prs_user@localhost;
+CREATE USER prs_user@localhost IDENTIFIED BY 'sesame';
+GRANT SELECT, INSERT, DELETE, UPDATE ON prs.* TO prs_user@localhost;
+
 insert into User values
 	(1, 'SYSTEM', 'XXXXX', 'System', 'System', 'XXX-XXX-XXXX', 'system@test.com', 0, 0),
     (2, 'cmason', 'MyPRSProj', 'Chris', 'Mason', '513-010-1010', 'cmason@prs.com', 1, 1);
