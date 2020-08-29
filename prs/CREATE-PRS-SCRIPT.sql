@@ -70,11 +70,6 @@ Foreign Key (RequestID) references Request(ID),
 CONSTRAINT req_pdt unique (RequestID, ProductID)
 );
 
--- Create prs_user
-DROP USER IF EXISTS prs_user@localhost;
-CREATE USER prs_user@localhost IDENTIFIED BY 'sesame';
-GRANT SELECT, INSERT, DELETE, UPDATE ON prs.* TO prs_user@localhost;
-
 insert into User values
 	(1, 'SYSTEM', 'XXXXX', 'System', 'System', 'XXX-XXX-XXXX', 'system@test.com', 0, 0),
     (2, 'cmason', 'MyPRSProj', 'Chris', 'Mason', '513-010-1010', 'cmason@prs.com', 1, 1);
@@ -100,3 +95,8 @@ insert into Product values
     (11, 4, '940600', 'Canon imageCLASS Copier (D530)', 99.99, null, null),
     (12, 5, '228148', 'Acer Aspire ATC-780A-UR12 Desktop Computer', 399.99, NULL, '/images/AcerAspireDesktop.jpg'),
     (13, 5, '279364', 'Lenovo IdeaCentre All-In-One Desktop', 349.99, NULL, '/images/LenovoIdeaCenter.jpg');
+    
+-- Create prs_user
+DROP USER IF EXISTS prs_user@localhost;
+CREATE USER prs_user@localhost IDENTIFIED BY 'sesame';
+GRANT SELECT, INSERT, DELETE, UPDATE ON prs.* TO prs_user@localhost;
