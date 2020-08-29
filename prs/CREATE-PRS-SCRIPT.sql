@@ -5,14 +5,14 @@ USE PRS;
 -- Create Table 1
 Create table User (
  ID 				int 			primary key auto_increment,
- UserName 			varchar(20) 	not null unique,
+ UserName 			varchar(20) 	not null,
  Password 			varchar(10)		not null,
  FirstName 			varchar(20)		not null,
  LastName 			varchar(20) 	not null,
  PhoneNumber 		varchar(12)		not null,
  Email 				varchar(75)		not null,
- IsReviewer 		Tinyint			not null,
- IsAdmin 			Tinyint			not null,
+ IsReviewer 		Tinyint			default 0 not null,
+ IsAdmin 			Tinyint			default 0 not null,
 CONSTRAINT uname unique (UserName)
 );
 
@@ -38,10 +38,10 @@ Create table Request (
  Justification			varchar(255)	not null,
  DataNeeded				date		 	not null,
  DeliveryMode			varchar(25)		not null,
- Status 				varchar(20)		not null,
+ Status 				varchar(20)		not null default 'New',
  Total		 			decimal(10,2)	not null,
- SubmittedDate			DateTime		not null,
- ReasonForRejection		varchar(100),
+ SubmittedDate			DateTime		default current_timestamp not null,
+ ReasonForRejection		varchar(100)	null,
 Foreign Key (UserID) references User(ID)
 );
 
@@ -52,8 +52,8 @@ Create table Product (
  PartNumber 			varchar(50)		not null,
  Name					varchar(150)	not null,
  Price					decimal(10,2) 	not null,
- Unit					varchar(255),
- PhotoPath 				varchar(255),
+ Unit					varchar(255)	null,
+ PhotoPath 				varchar(255)	null,
 Foreign Key (VendorID) references Vendor(ID),
 CONSTRAINT vendor_part unique (VendorID, PartNumber)
 );
@@ -62,8 +62,8 @@ CONSTRAINT vendor_part unique (VendorID, PartNumber)
 -- create Table 5
 Create table LineItem (
  ID 			int 	primary key auto_increment,
- RequestID 		int		not null unique,
- ProductID	 	int		not null unique,
+ RequestID 		int		not null,
+ ProductID	 	int		not null,
  Quantity		int		not null,
 Foreign Key (ProductID) references Product(ID),
 Foreign Key (RequestID) references Request(ID),
